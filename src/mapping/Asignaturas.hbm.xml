@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!-- Asignaturas.hbm.xml -->
+   <class name="clasesBean.Asignaturas" table="Asignaturas">
+        <id name="idAsignatura" type="int">
+            <column name="idAsignatura"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="nombreAsignatura"  type="string">
+            <column length="45" name="nombreAsignatura" not-null="true"/>
+        </property>
+        <set name="alumnosasignaturas">
+			<key>
+				<column name="idAsignaturaFK" /> <!-- columna que es la fk de AlumnosProfesores -->
+			</key>
+			<one-to-many class="clasesBean.Alumnosasignaturas" />
+		</set> 
+		<set name="profesoresasignaturas">
+			<key>
+				<column name="idAsignaturaFK" /> <!-- columna que es la fk de AlumnosProfesores -->
+			</key>
+			<one-to-many class="clasesBean.Profesoresasignaturas" />
+		</set>
+		<set name="temas">
+			<key>
+				<column name="idAsignaturaFK" /> <!-- columna que es la fk de AlumnosProfesores -->
+			</key>
+			<one-to-many class="clasesBean.Temas" />
+		</set> 
+    </class>	
+</hibernate-mapping>

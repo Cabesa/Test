@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<!-- Alumnos.hbm.xml -->
+ <class name="clasesBean.Alumnos" table="Alumnos">
+		<id name="idAlumno" type="integer">
+			<column name="idAlumno" />
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="usuario" >
+				<column name="idUsuarioFK" />
+		</many-to-one>
+		<set name="alumnosprofesores">
+			<key>
+				<column name="idAlumnoFK" /> <!-- columna que es la fk de AlumnosProfesores -->
+			</key>
+			<one-to-many class="clasesBean.Alumnosprofesores" />
+		</set> 
+		<set name="alumnosasignaturas">
+			<key>
+				<column name="idAlumnoFK" /> <!-- columna que es la fk de AlumnosProfesores -->
+			</key>
+			<one-to-many class="clasesBean.Alumnosasignaturas" />
+		</set> 
+		<set name="testalumnos">
+			<key>
+				<column name="idAlumnoFK" /> <!-- columna que es la fk de Test -->
+			</key>
+			<one-to-many class="clasesBean.Testalumno" />
+		</set> 
+ </class>
+</hibernate-mapping>

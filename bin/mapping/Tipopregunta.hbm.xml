@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="clasesBean.Tipopregunta" table="Tipopregunta">
+        <id name="idTipoPregunta" type="int">
+            <column name="idTipoPregunta"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="nombreTipoPregunta" type="string" >
+            <column length="45" name="nombreTipoPregunta" not-null="true"/>
+        </property>
+		<set name="preguntas">
+			<key>
+				<column name="idTipoPreguntaFK" /> <!-- columna que es la fk de Usuarios -->
+			</key>
+			<one-to-many class="clasesBean.Preguntas" />
+		</set> 
+    </class>
+</hibernate-mapping>

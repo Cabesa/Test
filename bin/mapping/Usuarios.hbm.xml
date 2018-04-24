@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="clasesBean.Usuarios" table="Usuarios">
+        <id name="idUsuario" type="integer">
+            <column name="idUsuario"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="nombreUsuario" type="string">
+            <column length="45" name="nombreUsuario" not-null="true"/>
+        </property>
+        <property name="apellido1usuario" type="string" unique="false">
+            <column length="45" name="apellido1Usuario" not-null="true"/>
+        </property>
+        <property name="apellido2usuario" type="string">
+            <column length="45" name="apellido2Usuario" not-null="true"/>
+        </property>
+        <property name="passUsuario" type="string">
+            <column length="45" name="passUsuario" not-null="true"/>
+        </property>
+        <property name="emailUsuario" type="string" >
+            <column length="45" name="emailUsuario" not-null="true" unique="true"/>
+        </property>
+		<set name="alumnos">
+			<key>
+				<column name="idUsuarioFK" /> <!-- columna que es la fk de Usuarios -->
+			</key>
+			<one-to-many class="clasesBean.Alumnos" />
+		</set> 
+		<set name="profesores">
+			<key>
+				<column name="idUsuarioFK" /> <!-- columna que es la fk de Usuarios -->
+			</key>
+			<one-to-many class="clasesBean.Profesores" />
+		</set> 
+    </class>
+</hibernate-mapping>

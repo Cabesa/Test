@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="clasesBean.Preguntas" table="Preguntas">
+        <id name="idPregunta" type="integer">
+            <column name="idPregunta"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="descPregunta" type="string" >
+            <column length="400" name="descPregunta" not-null="true"/>
+        </property>
+		 <many-to-one name="tipopregunta" >
+		<column name="idTipoPreguntaFK" />
+		</many-to-one>
+		<set name="testpreguntas">
+			<key>
+				<column name="idPreguntaFK" /> <!-- columna que es la fk de Test -->
+			</key>
+			<one-to-many class="clasesBean.Testpregunta" />
+		</set>
+		<set name="respuestas">
+			<key>
+				<column name="idPreguntaFK" /> <!-- columna que es la fk de Test -->
+			</key>
+			<one-to-many class="clasesBean.Respuestas" />
+		</set>  
+    </class>
+</hibernate-mapping>

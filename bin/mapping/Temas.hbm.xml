@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="clasesBean.Temas" table="Temas">
+        <id name="idTema" type="int">
+            <column name="idTema"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="nombreTema" type="string" >
+            <column length="45" name="nombreTema" not-null="true"/>
+        </property>
+        <many-to-one name="asignatura" >
+		<column name="idAsignaturaFK" />
+		</many-to-one>
+		<set name="tests">
+			<key>
+				<column name="idTemaFK" /> <!-- columna que es la fk de Usuarios -->
+			</key>
+			<one-to-many class="clasesBean.Test" />
+		</set> 
+    </class>
+</hibernate-mapping>

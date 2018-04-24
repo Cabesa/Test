@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="clasesBean.Alumnosprofesores" table="Alumnosprofesores">
+        <id name="idAlumnosProfesores" type="int">
+            <column name="idAlumnosProfesores"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one name="alumno" >
+		<column name="idAlumnoFK" />
+		</many-to-one>
+		<many-to-one name="profesor" >
+		<column name="idProfesorFK" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>
